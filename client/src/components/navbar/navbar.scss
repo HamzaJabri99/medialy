@@ -4,7 +4,9 @@
     border-bottom: 1px solid lightgray;
     justify-content: space-between;
     padding: 10px 20px;
-
+    position: sticky;
+    top: 0;
+    background-color: white;
 
     .left {
         display: flex;
@@ -64,7 +66,7 @@
                 width: 30px;
                 height: 30px;
                 border-radius: 50%;
-                object-fit: cover;
+                object-fit: cover center;
             }
 
             span {}
