@@ -85,7 +85,8 @@ $backgroundColor:linear-gradient(rgba(206, 9, 255, 0.4), rgba(0, 17, 255, 0.4));
                 outline: none;
                 border-bottom: 1px solid rgb(222, 182, 255);
                 padding: 20px 10px;
-                font-size: 18px;
+                font-size: 14px;
+                font-weight: 500;
 
                 &:focus {
                     border-bottom: 2px solid rgb(222, 182, 255);

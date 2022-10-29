@@ -22,7 +22,7 @@ $backgroundColor:linear-gradient(rgba(206, 9, 255, 0.4), rgba(0, 17, 255, 0.4));
 
     .left {
         flex: 1;
-        background: linear-gradient(rgba(206, 9, 255, 0.5), rgba(0, 17, 255, 0.5)), url("https://images.pexels.com/photos/5537577/pexels-photo-5537577.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")center;
+        background: linear-gradient(rgba(206, 9, 255, 0.5), rgba(0, 17, 255, 0.5)), url("https://images.pexels.com/photos/9069277/pexels-photo-9069277.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")center;
         background-size: cover;
         padding: 50px;
         display: flex;
@@ -86,11 +86,9 @@ $backgroundColor:linear-gradient(rgba(206, 9, 255, 0.4), rgba(0, 17, 255, 0.4));
                 outline: none;
                 border-bottom: 1px solid rgb(222, 182, 255);
                 padding: 20px 10px;
-                font-size: 18px;
+                font-size: 14px;
+                font-weight: 500;
 
-                &:focus {
-                    border-bottom: 2px solid rgb(222, 182, 255);
-                }
             }
 
             button {
