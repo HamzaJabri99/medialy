@@ -6,10 +6,12 @@ import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutline
 import ShareIcon from "@mui/icons-material/Share";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useState } from "react";
+import Comments from "../comments/Comments";
 const Post = ({ post }) => {
   const { userId, name, profilePic, description, img } = post;
   //Tempo
   const [liked, setLiked] = useState(false);
+  const [commentOpen, setCommentOpen] = useState(false);
   const handleLike = () => {};
   return (
     <div className="post">
@@ -38,7 +40,7 @@ const Post = ({ post }) => {
             {liked ? <FavoriteIcon /> : <FavoriteBorderOutlinedIcon />}
             <span>10 Likes</span>
           </div>
-          <div className="link">
+          <div className="link" onClick={() => setCommentOpen(!commentOpen)}>
             <ChatBubbleOutlineOutlinedIcon />
             <span>20 Comments</span>
           </div>
@@ -47,6 +49,7 @@ const Post = ({ post }) => {
             <span>Share</span>
           </div>
         </div>
+        {commentOpen && <Comments />}
       </div>
     </div>
   );
