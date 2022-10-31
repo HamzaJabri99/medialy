@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../../context/authContext";
-import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
+
 import "./stories.scss";
 
 const Stories = () => {
@@ -38,7 +38,7 @@ const Stories = () => {
       {stories &&
         stories.map((story) => {
           return (
-            <div className="story">
+            <div className="story" key={story.id}>
               <img src={story.img} alt="" />
               <span>{story.name}</span>
             </div>
