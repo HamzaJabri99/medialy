@@ -9,35 +9,28 @@
             object-fit: cover;
         }
 
-
-
         .write {
-            margin: 20px 0;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 20px;
+            margin: 20px 0px;
 
             input {
-                outline: none;
                 flex: 5;
                 padding: 10px;
-                border: 1px solid rgb(170, 86, 255);
-                border-radius: 5px;
+                border: 1px solid themed("border");
                 background-color: transparent;
                 color: themed("textColor");
-                font-weight: 500;
             }
 
             button {
-
-                padding: 10px;
                 border: none;
-                border-radius: 3px;
-                background-color: rgba(129, 73, 185, 0.9);
+                background-color: #5271ff;
                 color: white;
-
+                padding: 10px;
                 cursor: pointer;
+                border-radius: 3px;
             }
         }
 
@@ -59,17 +52,16 @@
                 }
 
                 p {
-                    color: themed("textColorSoft");
+                    color: themed("textColorSoft")
                 }
-            }
+                }
 
-            .date {
-                flex: 1;
-                align-self: center;
-                color: gray;
-                font-size: 14px;
-            }
-        }
-    }
-
-}
+                .date {
+                    flex: 1;
+                    align-self: center;
+                    color: gray;
+                    font-size: 12px;
+                }
+                }
+                }
+                }

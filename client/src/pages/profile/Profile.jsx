@@ -25,7 +25,7 @@ const Profile = () => {
         />
       </div>
       <div className="profileContainer">
-        <div className="userInfo">
+        <div className="uInfo">
           <div className="left">
             <a
               href="http://facebook.com"
@@ -82,8 +82,8 @@ const Profile = () => {
             <MoreHorizIcon />
           </div>
         </div>
+        <Posts className="posts" />
       </div>
-      <Posts className="posts" />
     </div>
   );
 };

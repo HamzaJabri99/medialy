@@ -3,7 +3,6 @@
 .rightbar {
     @include themify($themes) {
 
-
         flex: 3;
         position: sticky;
         top: 70px;
@@ -11,6 +10,14 @@
         overflow: scroll;
         background: themed("bgSoft");
 
+        @include mobile {
+            display: none;
+        }
+
+        @include tablet {
+            display: none;
+
+        }
 
         &::-webkit-scrollbar {
             display: none;
