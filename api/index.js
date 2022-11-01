@@ -1,5 +1,10 @@
 import express from "express";
 import mysql from "mysql";
+import authRouter from "./routes/auth.js";
+import userRouter from "./routes/users.js";
+import postRouter from "./routes/posts.js";
+import commentRouter from "./routes/comments.js";
+import likeRouter from "./routes/likes.js";
 const app = express();
 const db = mysql.createConnection({
   host: "localhost",
@@ -7,18 +12,11 @@ const db = mysql.createConnection({
   password: "PassWord",
   database: "medialy",
 });
-app.get("/", (req, res) => {
-  return res.json("Hey");
-});
-app.get("/users", (req, res) => {
-  const q = "select*from users";
-  db.query(q, (data, error) => {
-    if (error) return res.json(error);
-    if (data.length === 0) return res.status(404).json("user doesn't exists");
-    return res.json(data);
-  });
-});
-
+app.use("/api/auth", authRouter);
+app.use("/api/users", userRouter);
+app.use("/api/posts", postRouter);
+app.use("/api/comments", commentRouter);
+app.use("/api/likes", likeRouter);
 app.listen(8800, () => {
   console.log("Hey there");
 });
