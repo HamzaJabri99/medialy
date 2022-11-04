@@ -9,10 +9,16 @@ import commentRouter from "./routes/comments.js";
 import likeRouter from "./routes/likes.js";
 
 //middlewares
-
+app.use((req,res,next)=>{
+  //because we made with credentials in auth/makes sure we send our cookies
+  res.header("Access-Control-Allow-Credentials",true);
+  next();
+})
 app.use(express.json());
-app.use(cors())
-app.use(cookieParser())
+app.use(cors({
+  origin:"http://localhost:3000",
+}));
+app.use(cookieParser());
 
 
 //api endpoints

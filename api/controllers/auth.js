@@ -1,13 +1,15 @@
 import { db } from "../connect.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import cookie from "cookie-parser";
 export const register = (req, res) => {
   //check if user exists
-  const q = "SELECT * FROM users WHERE username = ?";
-  db.query(q, [req.body.username], (error, data) => {
+  const q = "SELECT * FROM users WHERE username = ? OR email = ?";
+  db.query(q, [req.body.username,req.body.email], (error, data) => {
+    
     if (error) return res.status(500).json(error);
-    if (data.length) return res.status(409).json("user already exists!");
+    if (data.length)  return res.status(409).json("user already exists!");
+    
+    
     //hash the password
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(req.body.password, salt);
@@ -25,7 +27,7 @@ export const register = (req, res) => {
       req.body.website,
     ];
     db.query(q, [values], (error, data) => {
-      if (error) return res.status(500).json("something went wrong");
+      if (error) return res.status(500).json(error);
       return res.status(200).json("user has been registerd!");
     });
   });
