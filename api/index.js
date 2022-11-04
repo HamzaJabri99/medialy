@@ -1,17 +1,18 @@
 import express from "express";
-import mysql from "mysql";
+const app = express();
 import authRouter from "./routes/auth.js";
 import userRouter from "./routes/users.js";
 import postRouter from "./routes/posts.js";
 import commentRouter from "./routes/comments.js";
 import likeRouter from "./routes/likes.js";
-const app = express();
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "PassWord",
-  database: "medialy",
-});
+
+//middlewares
+
+app.use(express.json());
+
+
+
+//api endpoints
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
 app.use("/api/posts", postRouter);
