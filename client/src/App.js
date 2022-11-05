@@ -15,13 +15,14 @@ import NavBar from "./components/navbar/NavBar";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/authContext";
-
+import {  QueryClient,QueryClientProvider } from "@tanstack/react-query"
 function App() {
   const {currentUser} = useContext(AuthContext);
   const { darkMode } = useContext(DarkModeContext);
-
+ const queryClient=new QueryClient();
   const Layout = () => {
     return (
+        <QueryClientProvider client={queryClient}>
       <div className={`theme-${darkMode ? "dark" : "light"}`}>
         <NavBar toggleTheme={darkMode} />
         <div style={{ display: "flex" }}>
@@ -32,6 +33,7 @@ function App() {
           <RightBar />
         </div>
       </div>
+      </QueryClientProvider>
     );
   };
 
