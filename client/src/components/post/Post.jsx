@@ -8,7 +8,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useState } from "react";
 import Comments from "../comments/Comments";
 const Post = ({ post }) => {
-  const { userId, name, profilePic, description, img } = post;
+  const { userId, name, profilePicture, description, img } = post;
   //Tempo
   const [liked, setLiked] = useState(false);
   const [commentOpen, setCommentOpen] = useState(false);
@@ -18,7 +18,7 @@ const Post = ({ post }) => {
       <div className="container">
         <div className="user">
           <div className="userInfo">
-            <img src={profilePic} alt="" />
+            <img src={profilePicture} alt="" />
             <div className="details">
               <Link
                 to={`/profile/${userId}`}
