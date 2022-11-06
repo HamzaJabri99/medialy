@@ -2,7 +2,6 @@ import { db } from "../connect.js";
 import jwt from "jsonwebtoken";
 import moment from "moment";
 
-
 export const getPosts = (req, res) => {
   const token = req.cookies.accessToken;
   if (!token) return res.status(401).json("Not Logged in");
@@ -19,20 +18,19 @@ export const getPosts = (req, res) => {
   });
 };
 
-
 export const addPost = (req, res) => {
   const token = req.cookies.accessToken;
   if (!token) return res.status(401).json("Not logged in!");
 
   jwt.verify(token, "secretKey", (error, user) => {
     if (error) return res.status(403).json("Token is not valid!");
-    const q = "INSERT INTO posts (`description`,`img`,`userId`,`createdAt`) VALUES (?)"
+    const q =
+      "INSERT INTO posts (`description`,`img`,`userId`,`createdAt`) VALUES (?)";
     const values = [
       req.body.description,
       req.body.img,
       user.id,
       moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
-      
     ];
 
     db.query(q, [values], (err, data) => {

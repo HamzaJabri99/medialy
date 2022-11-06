@@ -1,4 +1,4 @@
-import "./share.scss"
+import "./share.scss";
 
 import Image from "../../assets/img.png";
 import Map from "../../assets/map.png";

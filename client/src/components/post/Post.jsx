@@ -5,13 +5,23 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import ShareIcon from "@mui/icons-material/Share";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Comments from "../comments/Comments";
-import  moment from "moment";
+import moment from "moment";
+import { useQuery } from "@tanstack/react-query";
+import { makeRequest } from "../../axios";
+import { AuthContext } from "../../context/authContext";
 const Post = ({ post }) => {
-  const { userId, name, profilePicture, description, img,createdAt } = post;
+  const { currentUser } = useContext(AuthContext);
+  const { userId, name, profilePicture, description, img, createdAt } = post;
   //Tempo
-  const [liked, setLiked] = useState(false);
+  const { isLoading, error, data } = useQuery(["likes", post.id], () =>
+    makeRequest.get(`/likes?postId=${post.id}`).then((res) => {
+      return res.data;
+    })
+  );
+  console.log(data);
+  const liked = false;
   const [commentOpen, setCommentOpen] = useState(false);
   const handleLike = () => {};
   return (
@@ -38,8 +48,14 @@ const Post = ({ post }) => {
         </div>
         <div className="links">
           <div className="link">
-            {liked ? <FavoriteIcon /> : <FavoriteBorderOutlinedIcon />}
-            <span>10 Likes</span>
+            {isLoading ? (
+              "loading"
+            ) : data.includes(currentUser.id) ? (
+              <FavoriteIcon style={{ color: "red" }} />
+            ) : (
+              <FavoriteBorderOutlinedIcon />
+            )}
+            {data?.length} Likes
           </div>
           <div className="link" onClick={() => setCommentOpen(!commentOpen)}>
             <ChatBubbleOutlineOutlinedIcon />
@@ -50,7 +66,7 @@ const Post = ({ post }) => {
             <span>Share</span>
           </div>
         </div>
-        {commentOpen && <Comments postId={post.id}/>}
+        {commentOpen && <Comments postId={post.id} />}
       </div>
     </div>
   );
