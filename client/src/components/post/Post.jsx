@@ -7,8 +7,9 @@ import ShareIcon from "@mui/icons-material/Share";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useState } from "react";
 import Comments from "../comments/Comments";
+import  moment from "moment";
 const Post = ({ post }) => {
-  const { userId, name, profilePicture, description, img } = post;
+  const { userId, name, profilePicture, description, img,createdAt } = post;
   //Tempo
   const [liked, setLiked] = useState(false);
   const [commentOpen, setCommentOpen] = useState(false);
@@ -26,14 +27,14 @@ const Post = ({ post }) => {
               >
                 <span className="name">{name} </span>
               </Link>
-              <span className="date"> a few seconds ago</span>
+              <span className="date">{moment(createdAt).fromNow()}</span>
             </div>
           </div>
           <MoreHorizIcon />
         </div>
         <div className="content">
           <p>{description}</p>
-          <img src={img} alt="" />
+          <img src={`../uploads/${img}`} alt="" />
         </div>
         <div className="links">
           <div className="link">

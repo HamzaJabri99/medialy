@@ -9,13 +9,13 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { makeRequest } from "../../axios";
 const Share = () => {
   const [file, setFile] = useState(null);
-  const [desc, setDesc] = useState("");
+  const [description, setDesc] = useState("");
 
   const upload = async () => {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      const res = await makeRequest.post("/upload", formData);
+      const res = await makeRequest.post("/uploads", formData);
       return res.data;
     } catch (err) {
       console.log(err);
@@ -42,7 +42,7 @@ const Share = () => {
     e.preventDefault();
     let imgUrl = "";
     if (file) imgUrl = await upload();
-    mutation.mutate({ desc, img: imgUrl });
+    mutation.mutate({ description, img: imgUrl });
     setDesc("");
     setFile(null);
   };
@@ -57,7 +57,7 @@ const Share = () => {
               type="text"
               placeholder={`What's on your mind ${currentUser.name}?`}
               onChange={(e) => setDesc(e.target.value)}
-              value={desc}
+              value={description}
             />
           </div>
           <div className="right">
