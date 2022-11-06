@@ -8,7 +8,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useContext, useState } from "react";
 import Comments from "../comments/Comments";
 import moment from "moment";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { makeRequest } from "../../axios";
 import { AuthContext } from "../../context/authContext";
 const Post = ({ post }) => {
@@ -20,10 +20,24 @@ const Post = ({ post }) => {
       return res.data;
     })
   );
-  console.log(data);
+
   const liked = false;
   const [commentOpen, setCommentOpen] = useState(false);
-  const handleLike = () => {};
+  const queryClient = useQueryClient();
+  const mutation = useMutation(
+    (liked) => {
+      if (liked) return makeRequest.delete("/likes?postId=" + post.id);
+      return makeRequest.post("/likes", { postId: post.id });
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["likes"]);
+      },
+    }
+  );
+  const handleLike = () => {
+    mutation.mutate(data.includes(currentUser.id));
+  };
   return (
     <div className="post">
       <div className="container">
@@ -51,9 +65,9 @@ const Post = ({ post }) => {
             {isLoading ? (
               "loading"
             ) : data.includes(currentUser.id) ? (
-              <FavoriteIcon style={{ color: "red" }} />
+              <FavoriteIcon style={{ color: "red" }} onClick={handleLike} />
             ) : (
-              <FavoriteBorderOutlinedIcon />
+              <FavoriteBorderOutlinedIcon onClick={handleLike} />
             )}
             {data?.length} Likes
           </div>

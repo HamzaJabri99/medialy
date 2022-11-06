@@ -26,8 +26,8 @@ export const deleteLike = (req, res) => {
   jwt.verify(token, "secretKey", (error, user) => {
     if (error) return res.status(403).json(error);
     const q = "DELETE FROM LIKES WHERE `userId` = ? AND `postId` = ?";
-    const values = [user.id, req.body.postId];
-    db.query(q, [values], (error, data) => {
+
+    db.query(q, [user.id, req.query.postId], (error, data) => {
       if (error) return res.status(500).json(error);
       return res.status(200).json("you removed your like");
     });
