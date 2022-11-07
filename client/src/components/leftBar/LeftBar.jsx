@@ -15,14 +15,14 @@ import Fund from "../../assets/13.png";
 import { useContext } from "react";
 import { AuthContext } from "../../context/authContext";
 const LeftBar = () => {
-  const {currentUser}=useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
   return (
     <div className="leftbar">
       <div className="container">
         <div className="menu">
           <div className="user">
             <img
-              src={currentUser.profilePicture}
+              src={"../uploads/" + currentUser.profilePicture}
               alt=""
             />
             <span>{currentUser.name}</span>
