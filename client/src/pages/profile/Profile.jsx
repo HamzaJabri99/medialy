@@ -117,7 +117,7 @@ const Profile = () => {
                 <MoreHorizIcon />
               </div>
             </div>
-            <Posts className="posts" />
+            <Posts className="posts" userId={userId} />
           </div>
         </>
       )}
