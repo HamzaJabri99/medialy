@@ -26,7 +26,7 @@ const Comments = ({ postId }) => {
   );
   const handleSubmit = (e) => {
     e.preventDefault();
-    mutation.mutate({description,postId});
+    mutation.mutate({ description, postId });
     setDesc("");
     console.log(description);
   };

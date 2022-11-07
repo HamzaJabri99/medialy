@@ -9,81 +9,96 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import Twitter from "@mui/icons-material/Twitter";
 import Posts from "../../components/posts/Posts";
+import { useQuery } from "@tanstack/react-query";
+import { makeRequest } from "../../axios";
+import { useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../context/authContext";
 const Profile = () => {
+  const userId = parseInt(useLocation().pathname.split("/")[2]);
+  const { currentUser } = useContext(AuthContext);
+  const { isLoading, error, data } = useQuery(["user"], () =>
+    makeRequest.get("/users/find/" + userId).then((res) => {
+      return res.data;
+    })
+  );
+  console.log(data);
   return (
     <div className="profile">
-      <div className="images">
-        <img
-          src="https://images.pexels.com/photos/998641/pexels-photo-998641.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          alt=""
-          className="cover"
-        />
-        <img
-          src="https://images.pexels.com/photos/12397937/pexels-photo-12397937.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          alt=""
-          className="profilePicture"
-        />
-      </div>
-      <div className="profileContainer">
-        <div className="uInfo">
-          <div className="left">
-            <a
-              href="http://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FacebookTwoToneIcon fontSize="large" />
-            </a>
-            <a
-              href="http://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <InstagramIcon fontSize="large" />
-            </a>
-            <a
-              href="http://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Twitter fontSize="large" />
-            </a>
-            <a
-              href="http://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <LinkedInIcon fontSize="large" />
-            </a>
-            <a
-              href="http://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <PinterestIcon fontSize="large" />
-            </a>
+      {isLoading ? (
+        <span style={{ color: "inherit" }}>Loading...</span>
+      ) : (
+        <>
+          <div className="images">
+            <img src={data?.coverPicture} alt="" className="cover" />
+            <img src={data?.profilePicture} alt="" className="profilePicture" />
           </div>
-          <div className="center">
-            <span>Jabri Hamza</span>
-            <div className="info">
-              <div className="item">
-                <PlaceIcon />
-                <span>MA</span>
+          <div className="profileContainer">
+            <div className="uInfo">
+              <div className="left">
+                <a
+                  href="http://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FacebookTwoToneIcon fontSize="large" />
+                </a>
+                <a
+                  href="http://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <InstagramIcon fontSize="large" />
+                </a>
+                <a
+                  href="http://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Twitter fontSize="large" />
+                </a>
+                <a
+                  href="http://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <LinkedInIcon fontSize="large" />
+                </a>
+                <a
+                  href="http://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <PinterestIcon fontSize="large" />
+                </a>
               </div>
-              <div className="item">
-                <LanguageIcon />
-                <span>jabrii.com</span>
+              <div className="center">
+                <span>{data?.username}</span>
+                <div className="info">
+                  <div className="item">
+                    <PlaceIcon />
+                    <span>{data?.city}</span>
+                  </div>
+                  <div className="item">
+                    <LanguageIcon />
+                    <span>{data?.website}</span>
+                  </div>
+                </div>
+                {currentUser.id === userId ? (
+                  <button>Update</button>
+                ) : (
+                  <button>Follow</button>
+                )}
+              </div>
+              <div className="right">
+                <EmailOutlinedIcon />
+                <MoreHorizIcon />
               </div>
             </div>
-            <button>Follow</button>
+            <Posts className="posts" />
           </div>
-          <div className="right">
-            <EmailOutlinedIcon />
-            <MoreHorizIcon />
-          </div>
-        </div>
-        <Posts className="posts" />
-      </div>
+        </>
+      )}
     </div>
   );
 };
