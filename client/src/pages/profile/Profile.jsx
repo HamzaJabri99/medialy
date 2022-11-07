@@ -12,9 +12,11 @@ import Posts from "../../components/posts/Posts";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { makeRequest } from "../../axios";
 import { useLocation } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../context/authContext";
+import Update from "../../components/update/Update";
 const Profile = () => {
+  const [openUpdate, setOpenUpdate] = useState(false);
   const userId = parseInt(useLocation().pathname.split("/")[2]);
   const { currentUser } = useContext(AuthContext);
   const { isLoading, error, data } = useQuery(["user", userId], () =>
@@ -103,7 +105,7 @@ const Profile = () => {
                   </div>
                 </div>
                 {rIsLoading ? "Loading" : userId === currentUser.id ? (
-                  <button>Update</button>
+                  <button onClick={() => { setOpenUpdate(!openUpdate) }}>Update</button>
                 ) : (
                   <button onClick={handleFollow}>
                     {followshipData.includes(currentUser.id)
@@ -118,9 +120,13 @@ const Profile = () => {
               </div>
             </div>
             <Posts className="posts" userId={userId} />
+
+
           </div>
+          {openUpdate && <Update setOpenUpdate={setOpenUpdate} user={data} />}
         </>
       )}
+
     </div>
   );
 };
