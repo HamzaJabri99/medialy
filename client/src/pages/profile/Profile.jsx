@@ -9,7 +9,7 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import Twitter from "@mui/icons-material/Twitter";
 import Posts from "../../components/posts/Posts";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { makeRequest } from "../../axios";
 import { useLocation } from "react-router-dom";
 import { useContext } from "react";
@@ -17,15 +17,33 @@ import { AuthContext } from "../../context/authContext";
 const Profile = () => {
   const userId = parseInt(useLocation().pathname.split("/")[2]);
   const { currentUser } = useContext(AuthContext);
-  const { isLoading, error, data } = useQuery(["user"], () =>
+  const { isLoading, error, data } = useQuery(["user", userId], () =>
     makeRequest.get("/users/find/" + userId).then((res) => {
       return res.data;
     })
   );
-  console.log(data);
+  const { isLoading: rIsLoading, data: followshipData } = useQuery(["followship", userId], () =>
+    makeRequest.get("/follow?followedUserId=" + userId).then((res) => {
+      return res.data;
+    })
+  );
+  const queryClient = useQueryClient();
+  const mutation = useMutation((followed) => {
+    if (followed) return makeRequest.delete('/follow?userId=' + userId)
+    return makeRequest.post('/follow', { userId });
+  }, {
+    onSuccess: () => { queryClient.invalidateQueries(['followship']) }
+  })
+  console.log(followshipData);
+  const handleFollow = (e) => {
+    e.preventDefault();
+    mutation.mutate(followshipData.includes(currentUser.id))
+  };
   return (
     <div className="profile">
-      {isLoading ? (
+      {error ? (
+        <span style={{ color: "red" }}>error</span>
+      ) : isLoading ? (
         <span style={{ color: "inherit" }}>Loading...</span>
       ) : (
         <>
@@ -84,10 +102,14 @@ const Profile = () => {
                     <span>{data?.website}</span>
                   </div>
                 </div>
-                {currentUser.id === userId ? (
+                {rIsLoading ? "Loading" : userId === currentUser.id ? (
                   <button>Update</button>
                 ) : (
-                  <button>Follow</button>
+                  <button onClick={handleFollow}>
+                    {followshipData.includes(currentUser.id)
+                      ? "Following"
+                      : "Follow"}
+                  </button>
                 )}
               </div>
               <div className="right">

@@ -7,6 +7,7 @@ import userRouter from "./routes/users.js";
 import postRouter from "./routes/posts.js";
 import commentRouter from "./routes/comments.js";
 import likeRouter from "./routes/likes.js";
+import followRouter from "./routes/fellowships.js";
 import multer from "multer";
 
 //middlewares
@@ -43,7 +44,7 @@ app.use("/api/users", userRouter);
 app.use("/api/posts", postRouter);
 app.use("/api/comments", commentRouter);
 app.use("/api/likes", likeRouter);
-
+app.use("/api/follow", followRouter);
 app.listen(8800, () => {
   console.log("Hey there");
 });
