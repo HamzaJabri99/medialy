@@ -43,3 +43,17 @@ export const addPost = (req, res) => {
     });
   });
 };
+
+export const deletePost = (req, res) => {
+  const token = req.cookies.accessToken;
+  if (!token) return res.status(401).json("You need to login first");
+  jwt.verify(token, "secretKey", (error, user) => {
+    if (error) return res.status(403).json("Invalid Token");
+    const q = "DELETE FROM posts WHERE id= ? AND userId = ?";
+    db.query(q, [req.params.id, user.id], (error, data) => {
+      if (error) return res.status(500).json(error);
+      if (data.affectedRow > 0) return res.status(200).json("post has been deleted");
+      return res.status(403).json("You need to be post owner");
+    })
+  })
+}

@@ -85,31 +85,31 @@
 
                 input {
                     padding: 5px;
-border: none;
-border-bottom: 1px solid themed("border");
-color: gray;
-background-color: transparent;
-}
+                    border: none;
+                    border-bottom: 1px solid themed("border");
+                    color: themed("textColor");
+                    background-color: transparent;
+                }
 
-button {
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    color: white;
-    background-color: #5271ff;
-}
-}
+                button {
+                    border: none;
+                    padding: 10px;
+                    cursor: pointer;
+                    color: white;
+                    background-color: #5271ff;
+                }
+            }
 
-.close {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    border: none;
-    background-color: #f0544f;
-    padding: 5px;
-    cursor: pointer;
-    color: white;
-}
-}
-}
+            .close {
+                position: absolute;
+                top: 10px;
+                right: 20px;
+                border: none;
+                background-color: #f0544f;
+                padding: 5px;
+                cursor: pointer;
+                color: white;
+            }
+        }
+    }
 }
