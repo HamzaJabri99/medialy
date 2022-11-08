@@ -69,12 +69,21 @@ const Post = ({ post }) => {
               <span className="date">{moment(createdAt).fromNow()}</span>
             </div>
           </div>
-          {menuOpen && (
-            <div className="menuActions">
-              <button>update</button>
-              <button onClick={handleDelete}>delete</button>
-            </div>
-          )}
+          {currentUser.id === post.userId
+            ? menuOpen && (
+                <div className="menuActions">
+                  <button>update</button>
+                  <button onClick={handleDelete}>delete</button>
+                </div>
+              )
+            : menuOpen && (
+                <div
+                  style={{ padding: "5px", height: "50px" }}
+                  className="menuActions"
+                >
+                  <button style={{ backgroundColor: "orange" }}>report?</button>
+                </div>
+              )}
           <MoreHorizIcon onClick={() => setMenuOpen(!menuOpen)} />
         </div>
         <div className="content">
