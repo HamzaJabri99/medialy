@@ -16,7 +16,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-
+                position: relative;
 
                 .userInfo {
                     display: flex;
@@ -42,6 +42,49 @@
                         .date {
                             font-size: 12px;
                         }
+                    }
+
+                }
+
+                .menuActions {
+                    position: absolute;
+                    right: 30px;
+                    top: 15px;
+                    z-index: 999;
+                    height: 100px;
+                    width: 100px;
+                    padding: 15px 10px;
+                    background: themed("bgSoft");
+                    border-radius: 5px;
+                    color: themed("textColor");
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    gap: 20px;
+                    -webkit-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
+                    -moz-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
+                    box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
+
+                    button:nth-child(1) {
+                        border: none;
+                        padding: 10px;
+                        cursor: pointer;
+                        width: 80px;
+                        color: white;
+                        border-radius: 5px;
+                        background-color: #5271ff;
+
+                    }
+
+                    button:nth-child(2) {
+                        border: none;
+                        padding: 10px;
+                        cursor: pointer;
+                        width: 80px;
+                        color: white;
+                        border-radius: 5px;
+                        background-color: #f0544f;
                     }
                 }
             }

@@ -52,7 +52,7 @@ export const deletePost = (req, res) => {
     const q = "DELETE FROM posts WHERE id= ? AND userId = ?";
     db.query(q, [req.params.id, user.id], (error, data) => {
       if (error) return res.status(500).json(error);
-      if (data.affectedRow > 0) return res.status(200).json("post has been deleted");
+      if (data.affectedRows > 0) return res.status(200).json("post has been deleted");
       return res.status(403).json("You need to be post owner");
     })
   })
