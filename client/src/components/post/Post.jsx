@@ -5,6 +5,7 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import ShareIcon from "@mui/icons-material/Share";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import ReportIcon from "@mui/icons-material/Report";
 import { useContext, useState } from "react";
 import Comments from "../comments/Comments";
 import moment from "moment";
@@ -81,7 +82,17 @@ const Post = ({ post }) => {
                   style={{ padding: "5px", height: "50px" }}
                   className="menuActions"
                 >
-                  <button style={{ backgroundColor: "orange" }}>report?</button>
+                  <button
+                    style={{
+                      backgroundColor: "orange",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <ReportIcon />
+                    report?
+                  </button>
                 </div>
               )}
           <MoreHorizIcon onClick={() => setMenuOpen(!menuOpen)} />
