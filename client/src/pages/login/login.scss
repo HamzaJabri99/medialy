@@ -1,0 +1,115 @@
+$lightGreen:rgb(185, 188, 231);
+
+$backgroundColor:linear-gradient(rgba(206, 9, 255, 0.4), rgba(0, 17, 255, 0.4));
+
+.login {
+
+    height: 100vh;
+    display: flex;
+    background: $backgroundColor;
+    justify-content: center;
+    align-items: center;
+
+    .card {
+        display: flex;
+        width: 50%;
+        background-color: white;
+        border-radius: 10px;
+        min-height: 600px;
+        overflow: hidden;
+    }
+
+    .left {
+        flex: 1;
+        background: linear-gradient(rgba(206, 9, 255, 0.5), rgba(0, 17, 255, 0.5)), url("https://images.pexels.com/photos/4353618/pexels-photo-4353618.jpeg?cs=srgb&dl=pexels-ketut-subiyanto-4353618.jpg&fm=jpg&_gl=1*18xa3z7*_ga*MTU0OTE5NDI4My4xNjY2NzIzMDk3*_ga_8JE65Q40S6*MTY2NzA1NTAwMi43LjEuMTY2NzA1NTU4NS4wLjAuMA..")center;
+        background-size: cover;
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        color: #fff;
+
+
+        h1 {
+            font-size: 100px;
+            line-height: 100px;
+        }
+
+        p {}
+
+        span {
+            font-size: 14px;
+        }
+
+        button {
+            width: 50%;
+            padding: 10px;
+            border: none;
+
+            /* default color */
+
+            /* "to left" / "to right" - affects initial color */
+            background: linear-gradient(to left, rgb(247, 245, 248) 50%, rgba(156, 91, 209, 1) 50%) right;
+            background-size: 200%;
+            transition: .5s all ease-out;
+            color: rebeccapurple;
+            cursor: pointer;
+            font-weight: 500;
+
+            &:hover {
+                color: white;
+                background-position: left;
+            }
+        }
+    }
+
+    .right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 50px;
+        gap: 50px;
+        justify-content: center;
+
+        h1 {
+            color: #555;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+
+            input {
+                border: none;
+                outline: none;
+                border-bottom: 1px solid rgb(222, 182, 255);
+                padding: 20px 10px;
+                font-size: 14px;
+                font-weight: 500;
+
+                &:focus {
+                    border-bottom: 2px solid rgb(222, 182, 255);
+                }
+            }
+
+            button {
+                width: 50%;
+                padding: 10px;
+                border: none;
+                /* "to left" / "to right" - affects initial color */
+                background: linear-gradient(to left, rgba(156, 91, 209, 0.8) 50%, rgba(156, 91, 209, 1) 50%) right;
+                background-size: 200%;
+                transition: .5s ease-out;
+                color: white;
+                cursor: pointer;
+                font-weight: 500;
+
+                &:hover {
+                    background-position: left;
+                }
+            }
+        }
+
+    }
+}

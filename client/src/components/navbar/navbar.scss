@@ -1,0 +1,133 @@
+@import "../../style.scss";
+
+.navbar {
+    @include themify($themes) {
+
+        display: flex;
+        height: 50px;
+        border-bottom: 1px solid themed(border);
+        justify-content: space-between;
+        padding: 10px 20px;
+        position: sticky;
+        top: 0;
+        background-color: themed("bg");
+        color: themed("textColor");
+        z-index: 999;
+
+        .left {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+
+
+            span {
+                font-weight: bold;
+                font-size: 20px;
+                color: rgb(173, 92, 255);
+            }
+
+            .search {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                border: 1px solid rgb(170, 86, 255);
+                border-radius: 5px;
+                padding: 5px;
+
+
+                input {
+                    outline: none;
+                    border: none;
+                    width: 500px;
+                    height: 100%;
+                    color: themed("textColor");
+                    background: transparent;
+                    font-size: 16px;
+                    font-weight: 500;
+
+                    @include mobile {
+                        display: none;
+                    }
+
+                    @include tablet {
+                        width: 200px;
+                    }
+
+                }
+
+                .searchIcon {
+
+                    color: rgb(172, 116, 255);
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+        .right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+
+            @include mobile {
+                display: none;
+            }
+
+            .user {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                font-weight: 500;
+                cursor: pointer;
+
+                @include tablet {
+                    display: none;
+                }
+
+                img {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    object-fit: cover center;
+                }
+
+                span {}
+            }
+
+            .userOptions {
+                display: flex;
+                flex-direction: column;
+                background-color: themed("bgOptions");
+                position: absolute;
+                top: 72px;
+                padding: 30px;
+                border-radius: 5px;
+                height: fit-content;
+
+                a {
+                    text-decoration: none;
+                    color: themed(textOptions);
+                    margin: 5px;
+                    padding: 5px;
+                    border-radius: 5px;
+
+                    &:hover {
+                        background-color: themed(textColorSoft);
+                    }
+
+                    span {
+                        font-size: 18px;
+
+
+                    }
+                }
+
+            }
+        }
+    }
+}
