@@ -4,16 +4,24 @@ $themes: (light: (textColor: #000,
         bgSoft: #f6f3f3,
         textColorSoft: #555,
         border: lightgray,
+<<<<<<< HEAD
         bgOptions:#222,
         textOptions:#fff),
+=======
+    ),
+>>>>>>> 5b0b78463e7846809b1554f92a5a87e21771e59f
     dark: (textColor: whitesmoke,
         bg: #222,
         logo: white,
         bgSoft: #333,
         textColorSoft: lightgray,
         border: #444,
+<<<<<<< HEAD
         bgOptions:#fff,
         textOptions:#000),
+=======
+    ),
+>>>>>>> 5b0b78463e7846809b1554f92a5a87e21771e59f
 );
 
 @mixin themify($themes) {

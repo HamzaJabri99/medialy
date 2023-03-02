@@ -4,10 +4,19 @@ import jwt from "jsonwebtoken";
 export const register = (req, res) => {
   //check if user exists
   const q = "SELECT * FROM users WHERE username = ? OR email = ?";
+<<<<<<< HEAD
   db.query(q, [req.body.username, req.body.email], (error, data) => {
     if (error) return res.status(500).json(error);
     if (data.length) return res.status(409).json("user already exists!");
 
+=======
+  db.query(q, [req.body.username,req.body.email], (error, data) => {
+    
+    if (error) return res.status(500).json(error);
+    if (data.length)  return res.status(409).json("user already exists!");
+    
+    
+>>>>>>> 5b0b78463e7846809b1554f92a5a87e21771e59f
     //hash the password
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(req.body.password, salt);
@@ -42,12 +51,17 @@ export const login = (req, res) => {
     }
     const token = jwt.sign({ id: data[0].id }, "secretKey");
     const { password, ...infos } = data[0];
+<<<<<<< HEAD
     return res
       .cookie("accessToken", token, {
+=======
+    return res.cookie("accessToken", token, {
+>>>>>>> 5b0b78463e7846809b1554f92a5a87e21771e59f
         httpOnly: true,
       })
       .status(200)
       .json(infos);
+<<<<<<< HEAD
   });
 };
 export const logout = (req, res) => {
@@ -58,4 +72,15 @@ export const logout = (req, res) => {
     })
     .status(200)
     .json("logged out!");
+=======
+    
+  });
+};
+export const logout = (req, res) => {
+    res.clearCookie("accessToken",{
+        secure:true,
+        sameSite:"none"
+    }).status(200).json('logged out!');
+
+>>>>>>> 5b0b78463e7846809b1554f92a5a87e21771e59f
 };

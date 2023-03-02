@@ -12,7 +12,10 @@ import moment from "moment";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { makeRequest } from "../../axios";
 import { AuthContext } from "../../context/authContext";
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5b0b78463e7846809b1554f92a5a87e21771e59f
 const Post = ({ post }) => {
   const { currentUser } = useContext(AuthContext);
   const { userId, name, profilePicture, description, img, createdAt } = post;
@@ -22,6 +25,7 @@ const Post = ({ post }) => {
       return res.data;
     })
   );
+<<<<<<< HEAD
   const {
     isLoading: isLoadingc,
     error: errorc,
@@ -31,6 +35,9 @@ const Post = ({ post }) => {
       return res.data;
     })
   );
+=======
+
+>>>>>>> 5b0b78463e7846809b1554f92a5a87e21771e59f
   const liked = false;
   const [commentOpen, setCommentOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -74,7 +81,11 @@ const Post = ({ post }) => {
                 to={`/profile/${userId}`}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
+<<<<<<< HEAD
                 <span className="name">{currentUser.name} </span>
+=======
+                <span className="name">{name} </span>
+>>>>>>> 5b0b78463e7846809b1554f92a5a87e21771e59f
               </Link>
               <span className="date">{moment(createdAt).fromNow()}</span>
             </div>
@@ -123,7 +134,11 @@ const Post = ({ post }) => {
           </div>
           <div className="link" onClick={() => setCommentOpen(!commentOpen)}>
             <ChatBubbleOutlineOutlinedIcon />
+<<<<<<< HEAD
             <span>{datac?.length} Comments</span>
+=======
+            <span>20 Comments</span>
+>>>>>>> 5b0b78463e7846809b1554f92a5a87e21771e59f
           </div>
           <div className="link">
             <ShareIcon />

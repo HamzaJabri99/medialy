@@ -83,7 +83,10 @@
                 align-items: center;
                 gap: 10px;
                 font-weight: 500;
+<<<<<<< HEAD
                 cursor: pointer;
+=======
+>>>>>>> 5b0b78463e7846809b1554f92a5a87e21771e59f
 
                 @include tablet {
                     display: none;
@@ -98,6 +101,7 @@
 
                 span {}
             }
+<<<<<<< HEAD
 
             .userOptions {
                 display: flex;
@@ -128,6 +132,8 @@
                 }
 
             }
+=======
+>>>>>>> 5b0b78463e7846809b1554f92a5a87e21771e59f
         }
     }
 }
